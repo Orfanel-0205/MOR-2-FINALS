@@ -6,13 +6,7 @@ use CodeIgniter\Model;
 
 class CandidateModel extends Model
 {
-    protected $table         = 'candidates';
-    protected $primaryKey    = 'id';
-    protected $allowedFields = [
-        'election_id', 'name', 'description', 'photo'
-    ];
-
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $table      = 'candidates';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['name', 'description', 'election_id'];
 }

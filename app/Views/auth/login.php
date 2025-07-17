@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <title>Login - Voting System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Login</h1>
+
+    <h2>Login</h2>
+    <h3>Welcome to the Voting System</h3>
+    <p>Please enter your username and password.<br>
+       Example accounts:<br>
+       <b>Username:</b> Keith A Moto, <b>Password:</b> Motovlogger</p>
 
     <?php if (session()->getFlashdata('error')): ?>
-      <div class="alert alert-danger">
-        <?= session()->getFlashdata('error') ?>
-      </div>
+        <p class="error"><?= esc(session()->getFlashdata('error')) ?></p>
     <?php endif; ?>
 
-    <?= form_open('auth/login') ?>
-      <?= csrf_field() ?>
+    <form method="post" action="<?= site_url('auth/attemptLogin') ?>">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required>
 
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" value="<?= esc(old('username')) ?>" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
 
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required>
+        <button type="submit">Login</button>
+    </form>
 
-      <label>
-        <input type="checkbox" name="remember" value="1"> Remember Me
-      </label>
-
-      <input type="submit" value="Login">
-    <?= form_close() ?>
-  </div>
 </body>
 </html>
-

@@ -12,22 +12,22 @@ class AuthGuard implements FilterInterface
     {
         $session = session();
 
-        // Check if user is not logged in
+        // Not logged in
         if (! $session->get('isLoggedIn')) {
             return redirect()->to('/auth/login');
         }
 
-        // Check if role is required (e.g. 'admin') and does not match the session role
+        // Role mismatch
         if (! empty($arguments) && $session->get('role') !== $arguments[0]) {
-            // Optional: you could redirect to a custom access denied page instead
-            return redirect()->to('/auth/login');
+            return redirect()->to('/auth/login')->with('error', 'Access denied.');
         }
 
-        // Proceed normally if logged in and role matches
+        // Otherwise continue
+        return null;
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        // Not used, but can be implemented if needed
+        // Optional: after filter logic
     }
 }
