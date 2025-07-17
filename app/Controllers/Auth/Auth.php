@@ -27,7 +27,7 @@ class Auth extends BaseController
 
        
         session()->set([
-            'id'         => 1, // Simulated ID
+            'user_id'         => 1, // Simulated ID
             'username'   => $username,
             'role'       => 'voter',
             'isLoggedIn' => true,

@@ -2,23 +2,23 @@
 <html>
 <head>
     <title>Election Results</title>
-    <link rel="stylesheet" href="<?= base_url('asset/candidate.css') ?>">
 </head>
 <body>
-    <h1>Election Results</h1>
+    <h1>Election Results for Election ID: <?= esc($election_id) ?></h1>
 
-    <ul>
+    <?php if (!empty($candidates)): ?>
+        <ul>
         <?php foreach ($candidates as $candidate): ?>
             <li>
-                <strong><?= esc($candidate['name']) ?></strong><br>
-                <?= esc($candidate['description']) ?><br>
-                <img src="<?= base_url('uploads/' . $candidate['image']) ?>" width="150"><br>
-                <strong>Votes: <?= esc($candidate['votes']) ?></strong>
+                <h3><?= esc($candidate['name']) ?></h3>
+                <p>Votes: <?= esc($candidate['votes']) ?></p>
             </li>
-            <hr>
         <?php endforeach; ?>
-    </ul>
+        </ul>
+    <?php else: ?>
+        <p>No candidates found for this election.</p>
+    <?php endif; ?>
 
-    <a href="<?= base_url('vote/candidates/' . $election_id) ?>">Back to Voting</a>
+    <p><a href="<?= base_url('/') ?>">Back to Elections</a></p>
 </body>
 </html>

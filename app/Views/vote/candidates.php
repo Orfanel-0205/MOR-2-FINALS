@@ -8,6 +8,19 @@
 </head>
 <body>
     <h2>Presidential Candidates: <?= esc($election_id) ?></h2>
+
+    <?php if (session()->has('error')): ?>
+        <div class="alert alert-danger">
+            <?= esc(session('error')) ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->has('success')): ?>
+        <div class="alert alert-success">
+            <?= esc(session('success')) ?>
+        </div>
+    <?php endif; ?>
+
     <div class="candidates-container">
         <?php if (!empty($candidates)): ?>
             <?php foreach ($candidates as $candidate): ?>
@@ -25,8 +38,9 @@
                     <div class="candidate-info">
                         <h3><?= esc($candidate['name']) ?></h3>
                         <strong><?= esc($candidate['position']) ?></strong>
-                        <form method="post" action="<?= site_url('vote/' . $election_id) ?>">
+                        <form method="post" action="<?= site_url('vote/cast/' . $election_id) ?>">
                             <input type="hidden" name="candidate_id" value="<?= esc($candidate['id']) ?>">
+                            <?= csrf_field() ?>
                             <button type="submit">Vote for <?= esc($candidate['name']) ?></button>
                         </form>
                     </div>
@@ -37,6 +51,7 @@
         <?php endif; ?>
     </div>
 </body>
+
 </html>
 
 

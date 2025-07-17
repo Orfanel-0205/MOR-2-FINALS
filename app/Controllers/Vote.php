@@ -28,18 +28,19 @@ class Vote extends BaseController
     }
 
     public function cast($election_id)
-    {
-        $candidate_id = $this->request->getPost('candidate_id');
+{
+    $candidate_id = $this->request->getPost('candidate_id');
 
-        $voteModel = new VoteModel();
-        $voteModel->save([
-            'election_id' => $election_id,
-            'candidate_id' => $candidate_id,
-            'user_id' => session('user_id') // Make sure user_id is set in session
-        ]);
+    $voteModel = new VoteModel();
+    $voteModel->save([
+        'election_id'  => $election_id,
+        'candidate_id' => $candidate_id,
+        'user_id'      => session('user_id')
+    ]);
 
-        return redirect()->to(base_url('vote/' . $election_id));
-    }
+    return redirect()->to(base_url('vote/result/' . $election_id));
+}
+
 
     public function result($election_id)
     {

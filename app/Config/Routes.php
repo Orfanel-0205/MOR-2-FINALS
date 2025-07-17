@@ -19,11 +19,12 @@ $routes->post('auth/attemptLogin', 'Auth\Auth::attemptLogin');
 $routes->get('auth/logout', 'Auth\Auth::logout');
 
 // Voting System (Public routes with explicit filters)
+// Voting routes (public, protected by 'auth')
 $routes->get('/', 'Vote::index', ['filter' => 'auth']);
-$routes->get('vote/(:num)', 'Vote::show/$1', ['filter' => 'auth']);
 $routes->get('vote/candidates/(:num)', 'Vote::candidates/$1', ['filter' => 'auth']);
-$routes->post('vote/(:num)', 'Vote::cast/$1', ['filter' => 'auth']);
+$routes->post('vote/cast/(:num)', 'Vote::cast/$1', ['filter' => 'auth']);
 $routes->get('vote/result/(:num)', 'Vote::result/$1', ['filter' => 'auth']);
+
 
 // Admin Panel (Protected by admin filter)
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'auth:admin'], function($routes) {
