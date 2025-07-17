@@ -27,23 +27,41 @@ class Vote extends BaseController
         return view('vote/candidates', $data);
     }
 
-    // ✅ Add this method to handle vote submission
     public function cast($election_id)
     {
         $candidate_id = $this->request->getPost('candidate_id');
 
-        if (! $candidate_id) {
-            return redirect()->back()->with('error', 'No candidate selected.');
-        }
-
         $voteModel = new VoteModel();
-
         $voteModel->save([
             'election_id' => $election_id,
             'candidate_id' => $candidate_id,
-            'user_id' => session('user_id') // assumes user ID is stored in session after login
+            'user_id' => session('user_id') // Make sure user_id is set in session
         ]);
 
-        return redirect()->to(base_url('vote/result/' . $election_id));
+        return redirect()->to(base_url('vote/' . $election_id));
+    }
+
+    public function result($election_id)
+    {
+        $candidateModel = new CandidateModel();
+        $voteModel = new VoteModel();
+
+        $candidates = $candidateModel->where('election_id', $election_id)->findAll();
+
+        foreach ($candidates as &$candidate) {
+            $candidate['votes'] = $voteModel
+                ->where('candidate_id', $candidate['id'])
+                ->countAllResults();
+        }
+
+        $data['candidates'] = $candidates;
+        $data['election_id'] = $election_id;
+
+        return view('vote/result', $data);
+    }
+
+    public function show($id)
+    {
+        return redirect()->to(base_url('vote/result/' . $id));
     }
 }

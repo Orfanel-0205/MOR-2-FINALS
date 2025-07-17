@@ -14,13 +14,12 @@
                 <p><?= esc($candidate['description']) ?></p>
 
                 <?php
-                    $imagePath = base_url('uploads/candidates/' . $candidate['image']);
+                    $imagePath = base_url('uploads/candidates/' . $candidate['image']); // assuming image filename is stored
                 ?>
                 <img src="<?= $imagePath ?>" alt="<?= esc($candidate['name']) ?>" style="width:150px;"><br>
 
-                <form action="<?= base_url('vote/' . $electionId) ?>" method="post">
+                <form action="<?= base_url('vote/' . $candidate['id']) ?>" method="post">
                     <?= csrf_field() ?>
-                    <input type="hidden" name="candidate_id" value="<?= esc($candidate['id']) ?>">
                     <button type="submit">Vote</button>
                 </form>
             </li>

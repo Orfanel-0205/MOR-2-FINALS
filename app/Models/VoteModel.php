@@ -6,8 +6,9 @@ use CodeIgniter\Model;
 
 class VoteModel extends Model
 {
-    protected $table = 'votes';
-    protected $primaryKey = 'id';
-    protected $allowedFields = ['election_id', 'candidate_id', 'user_id'];
-    protected $useTimestamps = true;
+    protected $table            = 'votes';
+    protected $primaryKey       = 'id';
+    protected $allowedFields    = ['election_id', 'candidate_id', 'user_id', 'voted_at'];
+    protected $useTimestamps    = true;
+    protected $createdField     = 'voted_at';
 }

@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->setDefaultNamespace('App\Controllers');
+$routes->setDefaultNamespace('App\\Controllers');
 $routes->setDefaultController('Vote');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);

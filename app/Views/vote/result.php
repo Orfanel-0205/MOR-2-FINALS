@@ -1,20 +1,24 @@
-<h2>Presidential Election Results</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Election Results</title>
+    <link rel="stylesheet" href="<?= base_url('asset/candidate.css') ?>">
+</head>
+<body>
+    <h1>Election Results</h1>
 
-<table border="1" cellpadding="10">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Votes</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($candidates as $c): ?>
-        <tr>
-            <td><?= esc($c['name']) ?></td>
-            <td><?= esc($c['position']) ?></td>
-            <td><?= esc($c['vote_count']) ?></td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
+    <ul>
+        <?php foreach ($candidates as $candidate): ?>
+            <li>
+                <strong><?= esc($candidate['name']) ?></strong><br>
+                <?= esc($candidate['description']) ?><br>
+                <img src="<?= base_url('uploads/' . $candidate['image']) ?>" width="150"><br>
+                <strong>Votes: <?= esc($candidate['votes']) ?></strong>
+            </li>
+            <hr>
+        <?php endforeach; ?>
+    </ul>
+
+    <a href="<?= base_url('vote/candidates/' . $election_id) ?>">Back to Voting</a>
+</body>
+</html>
