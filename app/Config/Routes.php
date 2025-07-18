@@ -9,18 +9,20 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(false);
 
+
 // ─── Public (no filter) ─────────────────────────────────
 $routes->get('auth/login',         'Auth\Auth::login');
 $routes->post('auth/attemptLogin', 'Auth\Auth::attemptLogin');
 $routes->get('auth/logout',        'Auth\Auth::logout');
 
 // ─── VOTING (must be logged in as voter) ────────────────
-$routes->group('', ['filter' => 'auth'], function($r){
-    $r->get('/',                         'Vote::index');
-    $r->get('vote/candidates/(:num)',    'Vote::candidates/$1');
-    $r->post('vote/result/(:num)',         'Vote::result/$1');
-    $r->get('vote/result/(:num)',        'Vote::result/$1');
+$routes->group('', ['filter' => 'auth'], function($r) {
+    $r->get('/',                          'Vote::index');
+    $r->get('vote/candidates/(:num)',     'Vote::candidates/$1');
+    $r->post('vote/cast/(:num)',          'Vote::cast/$1');
+    $r->get('vote/result/(:num)',         'Vote::result/$1');
 });
+
 
 // ─── ADMIN PANEL (must be logged in as admin) ──────────
 $routes->group('admin', [

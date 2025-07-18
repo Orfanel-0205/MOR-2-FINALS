@@ -1,13 +1,19 @@
-<h2>Vote for President</h2>
+<h2>Current Elections</h2>
 
-<?php foreach ($candidates as $c): ?>
-    <div style="margin-bottom:20px;border:1px solid #ccc;padding:10px;">
-        <img src="<?= base_url('uploads/candidates/' . $c['photo']) ?>" width="150">
-        <h3><?= esc($c['name']) ?></h3>
-        <p><strong>Position:</strong> <?= esc($c['position']) ?></p>
-
-        <form method="post" action="<?= site_url('vote/' . $c['id']) ?>">
-            <button type="submit">Vote</button>
-        </form>
-    </div>
-<?php endforeach; ?>
+<?php if (!empty($elections)): ?>
+    <?php foreach ($elections as $election): ?>
+        <div style="margin-bottom:20px;border:1px solid #ccc;padding:10px;">
+            <h3><?= esc($election['title']) ?></h3>
+            <p><?= esc($election['description']) ?></p>
+            <p>
+                <strong>Status:</strong> <?= esc($election['status']) ?><br>
+                <strong>Dates:</strong> <?= date('M j, Y', strtotime($election['start_date'])) ?> to <?= date('M j, Y', strtotime($election['end_date'])) ?>
+            </p>
+            <a href="<?= site_url('vote/candidates/' . $election['id']) ?>" class="btn btn-primary">
+                View Candidates
+            </a>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>No active elections at this time.</p>
+<?php endif; ?>
