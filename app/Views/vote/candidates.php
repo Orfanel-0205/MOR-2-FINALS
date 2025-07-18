@@ -38,11 +38,12 @@
                     <div class="candidate-info">
                         <h3><?= esc($candidate['name']) ?></h3>
                         <strong><?= esc($candidate['position']) ?></strong>
-                        <form method="post" action="<?= site_url('vote/cast/' . $election_id) ?>">
-                            <input type="hidden" name="candidate_id" value="<?= esc($candidate['id']) ?>">
-                            <?= csrf_field() ?>
-                            <button type="submit">Vote for <?= esc($candidate['name']) ?></button>
-                        </form>
+                        <form method="post" action="<?php site_url("vote/result{$election_id}") ?>">
+                                            <?php csrf_field() ?>
+                               <input type="hidden" name="candidate_id" value="<?= esc($candidate['id']) ?>">
+               <button type="submit"> Vote for <?php esc($candidate['name']) ?> </button>
+                            </form>
+
                     </div>
                 </div>
             <?php endforeach; ?>
