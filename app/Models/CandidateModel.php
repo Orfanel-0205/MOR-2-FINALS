@@ -18,17 +18,13 @@ class CandidateModel extends Model
         'position' => 'permit_empty|max_length[100]'
     ];
 
-    /**
-     * Get candidates by election ID
-     */
+    
     public function getByElection($electionId)
     {
         return $this->where('election_id', $electionId)->findAll();
     }
 
-    /**
-     * Count candidates in an election
-     */
+    
     public function countByElection($electionId)
     {
         return $this->where('election_id', $electionId)->countAllResults();

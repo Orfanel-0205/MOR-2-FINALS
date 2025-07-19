@@ -31,10 +31,10 @@ class Vote extends BaseController
         $candidates = $this->candidateModel->where('election_id', $election_id)->findAll();
 
         return view('vote/candidates', [
-            'election'   => $election, // Make sure this is passed
+            'election'   => $election, 
             'candidates' => $candidates,
-            'title'      => $election['title'] // Optional: separate title variable
-        ]);
+            'title'      => $election,['title'] 
+            ]);
     }
 
     public function cast(int $election_id)
@@ -49,14 +49,14 @@ class Vote extends BaseController
             return redirect()->back()->with('error', 'Candidate not selected.');
         }
 
-        // Check if user already voted in this election
+        
         $existingVote = $this->voteModel
             ->where('election_id', $election_id)
             ->where('user_id', session('user_id'))
             ->first();
 
         if ($existingVote) {
-            // Update existing vote if changing candidate selection
+            
             $this->voteModel->update($existingVote['id'], [
                 'candidate_id' => $candidate_id,
                 'voted_at' => date('Y-m-d H:i:s')
@@ -66,7 +66,7 @@ class Vote extends BaseController
                 ->with('success', 'Your vote has been updated.');
         }
 
-        // Insert new vote if first time voting
+        
         $this->voteModel->insert([
             'election_id'  => $election_id,
             'candidate_id' => $candidate_id,

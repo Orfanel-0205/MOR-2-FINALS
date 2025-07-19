@@ -344,7 +344,7 @@ body {
     50% { transform: translateY(-10px); }
 }
 
-/* Particle animation background */
+
 .election-container::after {
     content: '';
     position: fixed;
@@ -369,7 +369,7 @@ body {
     100% { transform: translate(-150px, -150px); }
 }
 
-/* Mobile responsiveness */
+
 @media (max-width: 768px) {
     .candidates-grid {
         grid-template-columns: 1fr;
@@ -389,7 +389,7 @@ body {
     }
 }
 
-/* Loading animation for cards */
+
 .candidate-card.loading {
     animation: card-loading 1.5s ease-in-out infinite;
 }
@@ -399,7 +399,7 @@ body {
     50% { opacity: 1; transform: scale(1); }
 }
 
-/* Success vote animation */
+
 .vote-success {
     animation: vote-celebration 0.6s ease-out;
 }

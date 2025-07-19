@@ -13,7 +13,7 @@ class UserSeederController extends Controller
 
         $data = [
             'username' => 'admin',
-            'password' => 'admin123', // this will be hashed automatically
+            'password' => 'admin123', 
             'email'    => 'admin@example.com',
             'role'     => 'admin',
             'picture'  => 'default.jpg',

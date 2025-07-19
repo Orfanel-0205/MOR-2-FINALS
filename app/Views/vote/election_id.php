@@ -1,6 +1,6 @@
 <?php foreach ($candidates as $candidate): ?>
   <div class="candidate-card">
-    <!-- ... display name, image, etc. ... -->
+    
 
     <form 
       method="post" 

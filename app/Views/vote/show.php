@@ -1,4 +1,4 @@
-<!-- app/Views/vote/show.php -->
+
 <!DOCTYPE html>
 <html>
 <head>

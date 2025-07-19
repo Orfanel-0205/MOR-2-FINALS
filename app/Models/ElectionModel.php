@@ -21,9 +21,7 @@ class ElectionModel extends Model
         'status' => 'required|in_list[open,closed]'
     ];
 
-    /**
-     * Get all open elections
-     */
+    
     public function getOpenElections()
     {
         return $this->where('status', 'open')
@@ -32,9 +30,7 @@ class ElectionModel extends Model
                    ->findAll();
     }
 
-    /**
-     * Check if an election is currently active
-     */
+    
     public function isElectionActive($electionId)
     {
         $election = $this->find($electionId);

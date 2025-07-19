@@ -369,7 +369,7 @@ button:disabled {
     to { transform: rotate(360deg); }
 }
 
-/* Mobile responsiveness */
+
 @media (max-width: 768px) {
     .login-container {
         padding: 20px;
@@ -390,7 +390,7 @@ button:disabled {
     }
 }
 
-/* Dark mode enhancements */
+
 @media (prefers-color-scheme: dark) {
     input:focus {
         box-shadow: 
@@ -399,7 +399,7 @@ button:disabled {
     }
 }
 
-/* Accessibility improvements */
+
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
